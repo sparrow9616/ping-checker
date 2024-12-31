@@ -1,0 +1,52 @@
+{
+    "name": "stranger",
+    "description": "A Telegram ping checker Bot, written in Python with Pyrogram.",
+    "logo": "https://graph.org/file/e47d7251464ca14a7f576.jpg",
+    "keywords": [
+    "python3",
+    "telegram",
+    "bot",
+    "AnonX",
+    "MusicBot",
+    "telegram-bot",
+    "pyrogram"
+    ],
+    "env": {
+      "API_ID": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "STRING_SESSION": {
+        "description": "A Pyrogram v2 String Session from @StringFatherBot on Telegram.",
+        "value": "",
+        "required": true
+      },
+      "PING_CHANNEL": {
+        "description": "Your Ping channel",
+        "value": "",
+        "required": true
+      },
+      "BOT_LIST": {
+        "description": "Enter bots username with @ and don't add comma after bot username , just add space",
+        "value": "",
+        "required": true
+      },
+      "MESSAGE_ID": {
+        "description": "Message id where this message will be posted",
+        "value": "",
+        "required": true
+      }
+    },
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          }
+      ],
+      "stack": "container"
+  }
