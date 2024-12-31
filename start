@@ -1,1 +1,3 @@
+# Suggested start script
+#!/bin/bash
 python main.py
