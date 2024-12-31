@@ -4,6 +4,7 @@ RUN apt-get update -y && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/*
 COPY . /app/
 WORKDIR /app/
-RUN pip3 install -r requirements.txt
-CMD python main.py
+RUN pip3 install --no-cache-dir -U -r requirements.txt
+
+CMD bash start
 
