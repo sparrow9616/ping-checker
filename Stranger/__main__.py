@@ -48,7 +48,7 @@ async def main():
                         messages = app.get_chat_history(f"@{bot}", limit=1)
                         async for message in messages:
                             msg = message.text
-                        if msg == "/ping":
+                        if msg == "/start":
                             TEXT += f"\n ╰⊚ Bot Status: sʟᴇᴇᴘɪɴɢ 💤"
                         else:
                             TEXT += f"\n ╰⊚ Bot Status: ᴀʟɪᴠᴇ ✨"
