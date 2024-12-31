@@ -34,7 +34,7 @@ async def ping_check():
         for bot in BOT_LIST:
             try:
                 TEXT += f"\n\n ╭⎋ Bot Name: @{bot}"
-                await app.send_message(f"@{bot}","/ping")
+                await app.send_message(f"@{bot}","/start")
                 await asyncio.sleep(4)
                 messages = app.get_chat_history(f"@{bot}",limit=1)
                 async for message in messages:
