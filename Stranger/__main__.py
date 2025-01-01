@@ -64,7 +64,7 @@ async def main():
                 date = sp.strftime("%d %b %Y")
                 time = sp.strftime("%I : %M : %S %p")
                 TEXT += f"\n\n--Last checked on--: \n{date}\n{time}"
-                for x,y in MSG_CHANNELS:
+                for x,y in MSG_CHANNELS.items():
                     try:
                         await app.edit_message_text(x, y, TEXT)
                     except Exception as e:
