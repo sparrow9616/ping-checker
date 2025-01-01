@@ -18,13 +18,16 @@ logger = logging.getLogger(__name__)
 API_ID = int(getenv("API_ID", ""))
 API_HASH = getenv("API_HASH") 
 STRING = getenv("STRING_SESSION", None)
-PING_CHANNEL = int(getenv("PING_CHANNEL", None))
+# multiple channels and multiple msg ids can be given e.g in env give like this channelid&msgid i.e "-10052131135:161 -100456456:554 -1006546546:515" 
+CHANNELS = [x.strip() for x in getenv("CHANNELS").split(" ")]
 BOT_LIST = [x.strip() for x in getenv("BOT_LIST").split(" ")]
-MSG_ID = int(getenv("MESSAGE_ID", None))
 TIME = 600
+MSG_CHANNELS = {} 
+for ch in CHANNELS:
+    MSG_CHANNELS[int(ch.split("&")[0])] = int(ch.split("&")[1])
 
 # Validate environment variables
-if not all([API_ID, API_HASH, STRING, PING_CHANNEL, BOT_LIST, MSG_ID]):
+if not all([API_ID, API_HASH, STRING, CHANNELS, BOT_LIST]):
     logger.error("Missing required environment variables!")
     exit(1)
 
@@ -61,7 +64,11 @@ async def main():
                 date = sp.strftime("%d %b %Y")
                 time = sp.strftime("%I : %M : %S %p")
                 TEXT += f"\n\n--Last checked on--: \n{date}\n{time}"
-                await app.edit_message_text(PING_CHANNEL, MSG_ID, TEXT)
+                for x,y in MSG_CHANNELS:
+                    try:
+                        await app.edit_message_text(x, y, TEXT)
+                    except Exception as e:
+                        logger.error(f"Error in sending message to channel:{x} \n and error is : {e}")
                 await asyncio.sleep(TIME)  # Wait for 10 minutes
             except Exception as e:
                 logger.error(f"Main loop error: {e}")
